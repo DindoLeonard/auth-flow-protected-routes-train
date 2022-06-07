@@ -27,7 +27,9 @@ export const AuthProvider = ({
   const localstoragePersistValue = localStorage.getItem('persist');
 
   const [persist, setPersist] = useState(
-    localstoragePersistValue ? JSON.parse(localstoragePersistValue) : false
+    localstoragePersistValue
+      ? (JSON.parse(localstoragePersistValue) as boolean)
+      : false
   );
 
   return (

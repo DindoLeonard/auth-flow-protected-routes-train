@@ -3,6 +3,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import axios from '../api/axios';
 import useAuth from '../hooks/useAuth';
+import useLocalStorage from '../hooks/useLocalStorage';
 const LOGIN_URL = '/auth';
 
 const Login = (): React.ReactElement => {
@@ -12,7 +13,8 @@ const Login = (): React.ReactElement => {
   const state = location.state as { from: typeof location };
   const from = state?.from?.pathname || '/';
 
-  const [email, setEmail] = useState<string | undefined>();
+  const [email, setEmail] = useLocalStorage<string>('email', '');
+
   const [password, setPassword] = useState<string | undefined>();
 
   const onLoginClick = async () => {
