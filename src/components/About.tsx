@@ -1,8 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Users from './Users';
 
 const About = (): React.ReactElement => {
   const navigate = useNavigate();
+  console.log('render');
 
   return (
     <div>
@@ -15,6 +17,8 @@ const About = (): React.ReactElement => {
       >
         navigate-back
       </button>
+
+      <Users />
     </div>
   );
 };

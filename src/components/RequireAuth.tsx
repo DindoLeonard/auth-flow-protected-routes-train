@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import AuthContext from './../context/AuthProvider';
+import useAuth from '../hooks/useAuth';
 
 const RequireAuth = (): React.ReactElement => {
-  const ctx = useContext(AuthContext);
+  const authContext = useAuth();
   const location = useLocation();
 
-  console.log(ctx);
+  console.log(authContext);
   console.log(location);
 
-  return ctx.auth ? (
+  return authContext.auth ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />

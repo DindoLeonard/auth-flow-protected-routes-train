@@ -1,10 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthProvider';
+// import axios from '../api/axios';
+import useAuth from '../hooks/useAuth';
+import useLogout from '../hooks/useLogout';
 
 const Home = (): React.ReactElement => {
   const navigate = useNavigate();
-  const { setAuth } = useContext(AuthContext);
+  const { auth } = useAuth();
+  const logout = useLogout();
+
+  console.log(auth);
+
+  const signOut = async () => {
+    await logout();
+    navigate('/linkpage');
+  };
 
   return (
     <div>
@@ -28,9 +38,12 @@ const Home = (): React.ReactElement => {
       </button>
       <button
         type="button"
-        onClick={() => {
-          setAuth(false);
-        }}
+        // onClick={async () => {
+        //   await axios.get('logout');
+        //   setAuth(null);
+        //   navigate('/linkpage');
+        // }}
+        onClick={signOut}
         style={{ marginLeft: '10px' }}
       >
         Logout
